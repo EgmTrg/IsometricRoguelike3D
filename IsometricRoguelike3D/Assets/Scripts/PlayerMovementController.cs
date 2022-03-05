@@ -6,10 +6,13 @@ namespace IsometricRoguelike.Player.Movement
 
     public class PlayerMovementController : MonoBehaviour
     {
-        [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private PlayerMovementSettings _settings;
+        [SerializeField] private UnityEngine.Camera _currentCamera;
+        [SerializeField] private Rigidbody _rigidbody;
 
-        [SerializeField] private float speedMultiplier = 1f;
+        private Ray cameraRay;
+        private RaycastHit cameraRayHit;
+
 
         void FixedUpdate()
         {
@@ -19,14 +22,17 @@ namespace IsometricRoguelike.Player.Movement
 
         private void IsometricMovement()
         {
-            _rigidbody.MovePosition(transform.position + transform.forward * _settings.PlayerSpeed * speedMultiplier * Time.deltaTime);
+            _rigidbody.MovePosition(transform.position + InputData.Movement.MovementVelocity * _settings.PlayerSpeed);
         }
 
+        /// <summary>
+        /// Cast a ray from the camera to the mouse cursor. And ray touchs anything as an object then rotate.
+        /// </summary>
         private void IsometricRotation()
         {
-            var relative = (transform.position + InputData.Movement.MovementDirection) - transform.position;
-            var rot = Quaternion.LookRotation(relative, Vector3.up);
-            transform.rotation = rot;
+            cameraRay = _currentCamera.ScreenPointToRay(UnityEngine.Input.mousePosition);
+            if (Physics.Raycast(cameraRay, out cameraRayHit))
+                transform.LookAt(new Vector3(cameraRayHit.point.x, transform.position.y, cameraRayHit.point.z));
         }
     }
 }

@@ -12,7 +12,7 @@ namespace IsometricRoguelike.Input
             [SerializeField] private static float _horizontal;
             [SerializeField] private static float _vertical;
             
-            public static Vector3 MovementDirection
+            public static Vector3 MovementVelocity
             {
                 get { return _isometricMovementDirection; }
                 set { _isometricMovementDirection = value; }

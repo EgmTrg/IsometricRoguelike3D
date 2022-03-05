@@ -18,7 +18,7 @@ namespace IsometricRoguelike.Input
 
         private void IsometricInputs()
         {
-            InputData.Movement.MovementDirection =
+            InputData.Movement.MovementVelocity =
                 new Vector3(UnityEngine.Input.GetAxisRaw("Horizontal"), 0f, UnityEngine.Input.GetAxisRaw("Vertical"));
         }
     }
