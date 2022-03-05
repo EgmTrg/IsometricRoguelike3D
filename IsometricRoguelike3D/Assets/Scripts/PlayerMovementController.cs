@@ -1,5 +1,6 @@
 using IsometricRoguelike.Input;
 using UnityEngine;
+using Utility.Isometric;
 
 namespace IsometricRoguelike.Player.Movement
 {
@@ -18,7 +19,7 @@ namespace IsometricRoguelike.Player.Movement
 
         private void IsometricMovement()
         {
-            _rigidbody.MovePosition(transform.position + InputData.Movement.MovementVelocity * _settings.PlayerSpeed);
+            _rigidbody.MovePosition(transform.position + InputData.Movement.MovementVelocity.ToIsometric() * _settings.PlayerSpeed);
         }
 
         /// <summary>
