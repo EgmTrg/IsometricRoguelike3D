@@ -10,10 +10,6 @@ namespace IsometricRoguelike.Player.Movement
         [SerializeField] private UnityEngine.Camera _currentCamera;
         [SerializeField] private Rigidbody _rigidbody;
 
-        private Ray cameraRay;
-        private RaycastHit cameraRayHit;
-
-
         void FixedUpdate()
         {
             IsometricMovement();
@@ -30,9 +26,9 @@ namespace IsometricRoguelike.Player.Movement
         /// </summary>
         private void IsometricRotation()
         {
-            cameraRay = _currentCamera.ScreenPointToRay(UnityEngine.Input.mousePosition);
-            if (Physics.Raycast(cameraRay, out cameraRayHit))
-                transform.LookAt(new Vector3(cameraRayHit.point.x, transform.position.y, cameraRayHit.point.z));
+            Ray cameraRay = _currentCamera.ScreenPointToRay(UnityEngine.Input.mousePosition);
+            if (Physics.Raycast(cameraRay, out RaycastHit hit))
+                transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
         }
     }
 }
