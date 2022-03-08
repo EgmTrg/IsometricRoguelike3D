@@ -8,9 +8,12 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
+  - Map
+  - Ground
+  - Entity
   - 
   - 
   - 
@@ -32,10 +35,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - TestingLayer
   - 
   m_SortingLayers:
   - name: Default
