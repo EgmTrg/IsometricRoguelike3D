@@ -179,7 +179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 343926613}
   - component: {fileID: 343926614}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,8 +212,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 10
+  m_Intensity: 5
+  m_Range: 3
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 705507995}
   - component: {fileID: 705507994}
   m_Layer: 0
-  m_Name: Directional Light
+  m_Name: GlobalLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -352,8 +352,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 8.04, z: -9.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 1424045937}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 33.688, y: 0, z: 0}
 --- !u!1 &934019896
 GameObject:
@@ -367,7 +367,7 @@ GameObject:
   - component: {fileID: 934019900}
   - component: {fileID: 934019899}
   - component: {fileID: 934019898}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LookingDir
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -567,7 +567,7 @@ Transform:
   m_Children:
   - {fileID: 1536306237}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1112202704
 GameObject:
@@ -578,7 +578,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1112202705}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: -------MAP-------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -623,12 +623,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1424045936}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 705507995}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1526068224
 GameObject:
@@ -642,7 +643,7 @@ GameObject:
   - component: {fileID: 1526068228}
   - component: {fileID: 1526068227}
   - component: {fileID: 1526068226}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -739,8 +740,8 @@ GameObject:
   - component: {fileID: 1536306241}
   - component: {fileID: 1536306240}
   - component: {fileID: 1536306238}
-  m_Layer: 0
-  m_Name: Cube
+  m_Layer: 30
+  m_Name: Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -773,6 +774,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _meshRenderer: {fileID: 0}
+  touchedColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!65 &1536306240
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -846,7 +848,8 @@ GameObject:
   - component: {fileID: 1648812453}
   - component: {fileID: 1648812452}
   - component: {fileID: 1648812454}
-  m_Layer: 0
+  - component: {fileID: 1648812455}
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -900,6 +903,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1648812455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648812451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dca47f1ba4ab0ca43b3ed4b108a9282c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 4
+  detectLayer:
+    serializedVersion: 2
+    m_Bits: 1073741824
 --- !u!1001 &5376029786918283129
 PrefabInstance:
   m_ObjectHideFlags: 0
