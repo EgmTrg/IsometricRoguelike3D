@@ -15,15 +15,5 @@ namespace IsometricRoguelike.Singletons
         {
             this.healthSystem = healthSystem;
         }*/
-
-        public static void TakeDamage(int damage)
-        {
-
-        }
-
-        public static void TakeHeal(int heal)
-        {
-
-        }
     }
 }
