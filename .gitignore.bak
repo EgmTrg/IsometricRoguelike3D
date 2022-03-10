@@ -2,13 +2,14 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
-/[Ll]ibrary/
-/[Tt]emp/
-/[Oo]bj/
-/[Bb]uild/
-/[Bb]uilds/
-/[Ll]ogs/
-/[Mm]emoryCaptures/
+IsometricRoguelike3D/[Ll]ibrary/
+IsometricRoguelike3D/[Tt]emp/
+IsometricRoguelike3D/[Oo]bj/
+IsometricRoguelike3D/[Bb]uild/
+IsometricRoguelike3D/[Bb]uilds/
+IsometricRoguelike3D/[Ll]ogs/
+IsometricRoguelike3D/[Mm]emoryCaptures/
+IsometricRoguelike3D/IsometricRoguelike3D/Assets/Scripts/TestingFolder/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta

@@ -9,6 +9,7 @@ IsometricRoguelike3D/[Bb]uild/
 IsometricRoguelike3D/[Bb]uilds/
 IsometricRoguelike3D/[Ll]ogs/
 IsometricRoguelike3D/[Mm]emoryCaptures/
+IsometricRoguelike3D/Assets/Scripts/TestingFolder/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
