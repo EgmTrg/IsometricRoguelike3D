@@ -1,11 +1,12 @@
 ﻿using IsometricRoguelike.Interactable;
+using IsometricRoguelike.Health;
 using UnityEngine;
 
 namespace IsometricRoguelike.Entities
 {
     public class Entity : InteractableObjects
     {
-        //[SerializeField] private HealthController _healthController;
-
+        [Space(10)]
+        [SerializeField] protected HealthSettings healthsettings;
     }
 }

@@ -1,37 +1,31 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace IsometricRoguelike.Interactable
 {
     public class InteractableObjects : MonoBehaviour
     {
-        [SerializeField] private MeshRenderer _meshRenderer;
-        [SerializeField] private Color touchedColor;
+        [SerializeField] private List<string> interactableList;
+        private List<GameObject> touchedGameObjects;
 
-        protected virtual void Awake()
+        private void Start()
         {
-            _meshRenderer = GetComponent<MeshRenderer>();
-            touchedColor = Color.green;
+            interactableList.Add("InteractableMask");
         }
 
         protected virtual void OnCollisionEnter(Collision collision)
         {
-            if (_meshRenderer.material.color != touchedColor)
+            string touchedLayer = LayerMask.LayerToName(collision.gameObject.layer);
+            if (interactableList.Contains(touchedLayer))
             {
-                Debug.Log(gameObject.name + "Touched!");
-                // Interact();
-                // Aşağıdaki renk değiştirme olayı geçicidir. Dokunduktan sonra destroylanabilir istenirse.
-                _meshRenderer.material.color = touchedColor;
-            }
-            else
-            {
-                Debug.Log("Already Touched.");
-                // Eğer obje destroylanmayacak bir obje ise bu field'a girilecek.
+                Interact(collision.gameObject, 1);
             }
         }
 
-        protected virtual void OnCollisionExit(Collision collision)
+        private void Interact(GameObject gameobject_willDestroy, float destroyTime)
         {
-            Debug.Log(gameObject.name + "'s Collision Exit from : " + collision.gameObject.name);
+            Destroy(gameobject_willDestroy, destroyTime);
         }
     }
 }
