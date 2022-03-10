@@ -1,12 +1,12 @@
 ﻿using IsometricRoguelike.Interactable;
 using IsometricRoguelike.Health;
+using IsometricRoguelike.Combat;
 using UnityEngine;
 
 namespace IsometricRoguelike.Entities
 {
-    public class Entity : InteractableObjects
+    public class Entity : InteractableObjects, ILifeless
     {
-        [Space(10)]
-        [SerializeField] protected HealthSettings healthsettings;
+        public GameObject thisGameObject { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
     }
 }
