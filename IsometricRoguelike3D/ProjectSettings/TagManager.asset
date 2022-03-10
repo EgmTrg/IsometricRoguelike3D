@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - System
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -15,6 +16,7 @@ TagManager:
   - Map
   - Ground
   - Entity
+  - InteractableMask
   - 
   - 
   - 
@@ -36,7 +38,6 @@ TagManager:
   - 
   - 
   - 
-  - TestingLayer
   - 
   m_SortingLayers:
   - name: Default
