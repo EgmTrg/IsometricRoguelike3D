@@ -12,16 +12,10 @@ namespace IsometricRoguelike.Combat
             HealthSettings = Instantiate<HealthSettings>(healthSettings);
         }
 
-        // Use this for initialization
-        void Start()
+        private void Reset()
         {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            Debug.LogError($"The {this.name} is a superclass. It can only be used as an inheritance to create Enemy subclasses.");
+            DestroyImmediate(GetComponent<Enemy>());
         }
     }
 }
