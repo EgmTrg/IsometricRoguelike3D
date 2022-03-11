@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace IsometricRoguelike.Interactable
@@ -19,13 +18,25 @@ namespace IsometricRoguelike.Interactable
             string touchedLayer = LayerMask.LayerToName(collision.gameObject.layer);
             if (interactableList.Contains(touchedLayer))
             {
-                Interact(collision.gameObject, 1);
+                Interact(collision.gameObject);
             }
         }
 
-        private void Interact(GameObject gameobject_willDestroy, float destroyTime)
+        private void Interact(GameObject interactedGameobject)
         {
-            Destroy(gameobject_willDestroy, destroyTime);
+            switch (interactedGameobject.name)
+            {
+                case "Chest":
+                    Debug.Log("Touched Chest");
+                    Destroy(interactedGameobject, 1);
+                    break;
+                case "Enemy":
+                    Debug.Log("Touched Enemy");
+                    break;
+                default:
+                    Debug.Log("Unknown Object");
+                    break;
+            }
         }
     }
 }
