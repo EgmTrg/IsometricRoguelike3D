@@ -7,6 +7,10 @@ namespace IsometricRoguelike.Combat
     {
         public GameObject thisGameObject { get; set; }
         public HealthSettings HealthSettings { get; set; }
+        public void InstantiateHealth(HealthSettings healthSettings)
+        {
+            HealthSettings = Instantiate<HealthSettings>(healthSettings);
+        }
 
         // Use this for initialization
         void Start()
