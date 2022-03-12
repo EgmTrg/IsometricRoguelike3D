@@ -1,6 +1,4 @@
 using IsometricRoguelike.Health;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace IsometricRoguelike.Combat
@@ -9,15 +7,10 @@ namespace IsometricRoguelike.Combat
     {
         [SerializeField] private HealthSettings healthSettings;
 
-        void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             base.InstantiateHealth(healthSettings);
-        }
-
-
-        void Update()
-        {
-
         }
     }
 }

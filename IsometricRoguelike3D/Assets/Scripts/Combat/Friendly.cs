@@ -1,21 +1,31 @@
 ﻿using IsometricRoguelike.Health;
+using IsometricRoguelike.Interact;
 using UnityEngine;
 
 namespace IsometricRoguelike.Combat
 {
-    public class Friendly : MonoBehaviour, IAlive
+    public class Friendly : Interactable, IAlive
     {
-        public GameObject thisGameObject { get; set; }
+        #region FromInterface
         public HealthSettings HealthSettings { get; set; }
+        #endregion
+
         public void InstantiateHealth(HealthSettings healthSettings)
         {
             HealthSettings = Instantiate<HealthSettings>(healthSettings);
         }
 
-        private void Reset()
+        void Start()
         {
-            Debug.LogError($"The {this.name} is a superclass. It can only be used as an inheritance to create {this.name} subclasses.");
-            DestroyImmediate(GetComponent<Enemy>());
+            if (HealthSettings == null)
+            {
+                Debug.LogError($"{gameObject.name} has no HealthSettings");
+            }
+        }
+
+        protected override void Interact()
+        {
+            base.Interact();
         }
     }
 }
