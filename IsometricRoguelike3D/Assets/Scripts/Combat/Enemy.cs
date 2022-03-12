@@ -23,7 +23,7 @@ namespace IsometricRoguelike.Combat
 
         private void Reset()
         {
-            Debug.LogError($"The {this.name} is a superclass. It can only be used as an inheritance to create Enemy subclasses.");
+            Debug.LogError($"The {this.name} is a superclass. It can only be used as an inheritance to create {this.name} subclasses.");
             DestroyImmediate(GetComponent<Enemy>());
         }
     }
