@@ -11,7 +11,7 @@ namespace IsometricRoguelike.Input
             [SerializeField] private static Vector3 _isometricMovementDirection;
             [SerializeField] private static float _horizontal;
             [SerializeField] private static float _vertical;
-            
+
             public static Vector3 MovementVelocity
             {
                 get { return _isometricMovementDirection; }
@@ -29,6 +29,18 @@ namespace IsometricRoguelike.Input
                 get { return _horizontal; }
                 set { _horizontal = value; }
             }
+        }
+        public static class Combat
+        {
+            [Header("Keys")]
+            [SerializeField] private static bool _combatKey;
+
+            public static bool CombatKey
+            {
+                get { return _combatKey; }
+                set { _combatKey = value; }
+            }
+
         }
     }
 }
