@@ -1,14 +1,19 @@
 ﻿using IsometricRoguelike.Interact;
 using IsometricRoguelike.Health;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace IsometricRoguelike.Combat
 {
+    [RequireComponent(typeof(NavMeshAgent))]
     public class Enemy : Interactable, IAlive
     {
         #region FromInterface
         public HealthSettings HealthSettings { get; set; }
         #endregion
+
+        protected NavMeshAgent agent;
+        private Transform target;
 
         public void InstantiateHealth(HealthSettings healthSettings)
         {
@@ -18,15 +23,24 @@ namespace IsometricRoguelike.Combat
         void Start()
         {
             if (HealthSettings == null)
-            {
                 Debug.LogError($"{gameObject.name} has no HealthSettings");
-            }
+
+            target = GameObject.FindWithTag("Player").transform;
         }
 
-        protected override void Interact()
+        private void Update()
         {
-            base.Interact();
-            // There will be attack operations and health management.
+            //DetectTarget();
         }
+
+        /*private void DetectTarget()
+        {
+            float distance = Vector3.Distance(target.position, transform.position);
+
+            if (distance <= interactRadius)
+            {
+                agent.SetDestination(target.position);
+            }
+        }*/
     }
 }

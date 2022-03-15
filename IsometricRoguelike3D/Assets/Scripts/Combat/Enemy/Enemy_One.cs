@@ -11,6 +11,7 @@ namespace IsometricRoguelike.Combat
         {
             base.Awake();
             base.InstantiateHealth(healthSettings);
+            base.agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         }
     }
 }

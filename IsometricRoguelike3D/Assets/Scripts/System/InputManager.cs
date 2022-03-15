@@ -19,7 +19,8 @@ namespace IsometricRoguelike.Input
 
         private void KeyCodeControl()
         {
-            InputData.Combat.CombatKey = UnityEngine.Input.GetButtonDown("Fire1");
+            InputData.Combat.MeleeCombatKey = UnityEngine.Input.GetButtonDown("Fire1");
+            InputData.Combat.RangedCombatKey = UnityEngine.Input.GetButtonDown("Fire2");
         }
 
         private void IsometricInputs()

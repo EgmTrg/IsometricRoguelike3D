@@ -30,17 +30,24 @@ namespace IsometricRoguelike.Input
                 set { _horizontal = value; }
             }
         }
+
         public static class Combat
         {
             [Header("Keys")]
-            [SerializeField] private static bool _combatKey;
+            [SerializeField] private static bool _meleeCombatKey;
+            [SerializeField] private static bool _rangedCombatKey;
 
-            public static bool CombatKey
+            public static bool RangedCombatKey
             {
-                get { return _combatKey; }
-                set { _combatKey = value; }
+                get { return _rangedCombatKey; }
+                set { _rangedCombatKey = value; }
             }
 
+            public static bool MeleeCombatKey
+            {
+                get { return _meleeCombatKey; }
+                set { _meleeCombatKey = value; }
+            }
         }
     }
 }
