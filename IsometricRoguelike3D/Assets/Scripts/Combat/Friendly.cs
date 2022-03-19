@@ -9,8 +9,10 @@ namespace IsometricRoguelike.Combat
         #region FromInterface
         public HealthSettings HealthSettings { get; set; }
         #endregion
+        [Header("Health")]
+        [SerializeField] protected HealthSettings healthSettings;
 
-        public void InstantiateHealth(HealthSettings healthSettings)
+        public void InstantiateHealth()
         {
             HealthSettings = Instantiate<HealthSettings>(healthSettings);
         }

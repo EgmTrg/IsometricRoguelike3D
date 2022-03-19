@@ -1,17 +1,13 @@
-﻿using IsometricRoguelike.Combat;
-using IsometricRoguelike.Health;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Assets.Scripts.Combat.Enemy
+namespace IsometricRoguelike.Combat
 {
     public class Friendly_One : Friendly
     {
-        [SerializeField] private HealthSettings healthSettings;
-
         protected override void Awake()
         {
             base.Awake();
-            base.InstantiateHealth(healthSettings);
+            base.InstantiateHealth();
         }
     }
 }

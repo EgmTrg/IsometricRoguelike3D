@@ -1,7 +1,7 @@
 ﻿using IsometricRoguelike.Interact;
 using IsometricRoguelike.Health;
-using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine;
 
 namespace IsometricRoguelike.Combat
 {
@@ -11,13 +11,17 @@ namespace IsometricRoguelike.Combat
         #region FromInterface
         public HealthSettings HealthSettings { get; set; }
         #endregion
+        [Header("For NavMeshAgent")]
+        [SerializeField] protected NavMeshAgent agent;
+        [SerializeField] private Transform target;
+        
+        [Header("Health")]
+        [SerializeField] protected HealthSettings healthSettings;
 
-        protected NavMeshAgent agent;
-        private Transform target;
-
-        public void InstantiateHealth(HealthSettings healthSettings)
+        protected override void Awake()
         {
-            HealthSettings = Instantiate<HealthSettings>(healthSettings);
+            base.Awake();
+            healthSettings = HealthManager.InstantiateHealthSettings(healthSettings);
         }
 
         void Start()
@@ -30,10 +34,10 @@ namespace IsometricRoguelike.Combat
 
         private void Update()
         {
-            //DetectTarget();
+            DetectTarget();
         }
 
-        /*private void DetectTarget()
+        private void DetectTarget()
         {
             float distance = Vector3.Distance(target.position, transform.position);
 
@@ -41,6 +45,6 @@ namespace IsometricRoguelike.Combat
             {
                 agent.SetDestination(target.position);
             }
-        }*/
+        }
     }
 }

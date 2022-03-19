@@ -13,6 +13,11 @@ namespace IsometricRoguelike.Health
                 entityHealthSettings = settings;
         }
 
+        public static HealthSettings InstantiateHealthSettings(HealthSettings settings)
+        {
+            return Instantiate<HealthSettings>(settings);
+        }
+
         public void TakeDamage(int damage)
         {
             var health = Mathf.Clamp(entityHealthSettings.Health_Current - damage, entityHealthSettings.MinimumHealth, entityHealthSettings.Health_Max);
