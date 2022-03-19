@@ -1,9 +1,11 @@
 ﻿using IsometricRoguelike.Health;
 using IsometricRoguelike.Interact;
+using UnityEngine.AI;
 using UnityEngine;
 
 namespace IsometricRoguelike.Combat
 {
+    [RequireComponent(typeof(NavMeshAgent), typeof(Rigidbody))]
     public class Friendly : Interactable, IAlive
     {
         #region FromInterface

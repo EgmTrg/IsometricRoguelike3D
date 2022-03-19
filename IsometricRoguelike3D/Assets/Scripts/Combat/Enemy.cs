@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace IsometricRoguelike.Combat
 {
-    [RequireComponent(typeof(NavMeshAgent))]
+    [RequireComponent(typeof(NavMeshAgent), typeof(Rigidbody))]
     public class Enemy : Interactable, IAlive
     {
         #region FromInterface
@@ -14,7 +14,7 @@ namespace IsometricRoguelike.Combat
         [Header("For NavMeshAgent")]
         [SerializeField] protected NavMeshAgent agent;
         [SerializeField] private Transform target;
-        
+
         [Header("Health")]
         [SerializeField] protected HealthSettings healthSettings;
 
