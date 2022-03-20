@@ -1,28 +1,26 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace IsometricRoguelike.Interact
 {
-    public class Interactable : MonoBehaviour
+    public abstract class Interactable : MonoBehaviour
     {
         [SerializeField] protected float interactRadius = 1;
         [SerializeField] private Transform playerTransform;
-        private bool stateOfInteractable = true;    // If its true, Player interact with it otherwise can't.
-        bool playerNearOfInteractable = false;
+        private bool playerInteractableStatement = true;    // If its true, Player interact with it otherwise can't.
+        private bool isPlayer_NearOfInteractable = false;
 
         #region ForUnityInspector
-        private void OnDrawGizmosSelected()
+        protected virtual void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(transform.position, interactRadius);
         }
-        /*
-                private void Reset()
-                {
-                    Debug.LogError($"The {this.name} is a superclass. It can only be used as an inheritance to create {this.name} subclasses.");
-                    DestroyImmediate(GetComponent<Interactable>());
-                }
-        */
+        #endregion
+
+        #region Abstract Methods
+        protected abstract void Interact();
+        protected abstract void AfterInteract();
+        protected abstract void EndOfInteract();
         #endregion
 
         protected virtual void Awake()
@@ -32,36 +30,35 @@ namespace IsometricRoguelike.Interact
 
         private void Update()
         {
+            DetectNearInteractables();
+        }
+
+        private void DetectNearInteractables()
+        {
             float distance = Vector3.Distance(transform.position, playerTransform.position);
             if (distance <= interactRadius)
             {
-                if (!playerNearOfInteractable)
+                if (!isPlayer_NearOfInteractable)
                 {
                     Debug.Log($"Player near of {gameObject.name}");
-                    playerNearOfInteractable = true;
+                    isPlayer_NearOfInteractable = true;
 
-                    if (stateOfInteractable == true)
+                    if (playerInteractableStatement == true)
                     {
                         Interact();
-                        stateOfInteractable = false;
+                        AfterInteract();
+                        EndOfInteract();
+                        playerInteractableStatement = false;
                     }
                 }
             }
         }
 
-        protected virtual void Interact()
+        protected void RotationToPlayer(Transform target, Transform transform)
         {
-            // There is empty for overwrite..
-        }
-
-        protected virtual void AfterInteract()
-        {
-            // There is empty for overwrite..
-        }
-
-        protected virtual void EndOfInteract()
-        {
-            stateOfInteractable = true;
+            Vector3 direction = (target.position - transform.position).normalized;
+            Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10f);
         }
     }
 }
