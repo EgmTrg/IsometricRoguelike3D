@@ -1,3 +1,4 @@
 ﻿Gamemanager'da katlara gore dusmanlarin canini ayarlayacak health.multiplier bulunabilir. 
 Dusmanlar her spawn edilirken canlari ile bu multiplier carpilarak duzgun bir healthmanagement yapilabilir.
 
+Enemy classındaki FollowTheTarget metodunu Interactable class'ında DetectNearInteractables metodu ile yapıyoruz. Daha sonra düzenle.

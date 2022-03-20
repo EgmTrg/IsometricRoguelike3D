@@ -13,10 +13,7 @@ namespace IsometricRoguelike.Health
                 entityHealthSettings = settings;
         }
 
-        public static HealthSettings InstantiateHealthSettings(HealthSettings settings)
-        {
-            return Instantiate<HealthSettings>(settings);
-        }
+        public static HealthSettings InstantiateHealthSetting(HealthSettings healthSettings) => Instantiate<HealthSettings>(healthSettings);
 
         public void TakeDamage(int damage)
         {
@@ -29,6 +26,10 @@ namespace IsometricRoguelike.Health
             if (health == entityHealthSettings.MinimumHealth)
             {
                 entityHealthSettings.IsAlive = false;
+            }
+            else
+            {
+                entityHealthSettings.Health_Current = health;
             }
         }
     }
