@@ -6,22 +6,34 @@ using UnityEngine;
 namespace IsometricRoguelike.Combat
 {
     [RequireComponent(typeof(NavMeshAgent), typeof(Rigidbody))]
-    public class Enemy : Interactable, IAlive
+    public abstract class Enemy : Interactable, IAlive
     {
+        #region Props
         #region FromInterface
         public HealthSettings HealthSettings { get; set; }
+        public Transform TargetTransform { get; set; }
         #endregion
         [Header("For NavMeshAgent")]
         [SerializeField] protected NavMeshAgent agent;
-        [SerializeField] private Transform target;
+        [SerializeField] [Range(1f, 3f)] protected float stoppingDistance;
 
         [Header("Health")]
         [SerializeField] protected HealthSettings healthSettings;
+        #endregion
+
+        #region ForUnityInspector
+        protected override void OnDrawGizmosSelected()
+        {
+            base.OnDrawGizmosSelected();
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, stoppingDistance);
+        }
+        #endregion
 
         protected override void Awake()
         {
             base.Awake();
-            healthSettings = HealthManager.InstantiateHealthSettings(healthSettings);
+            HealthSettings = HealthManager.InstantiateHealthSetting(healthSettings);
         }
 
         void Start()
@@ -29,21 +41,30 @@ namespace IsometricRoguelike.Combat
             if (HealthSettings == null)
                 Debug.LogError($"{gameObject.name} has no HealthSettings");
 
-            target = GameObject.FindWithTag("Player").transform;
+            TargetTransform = GameObject.FindWithTag("Player").transform;
+            agent.stoppingDistance = stoppingDistance;
         }
 
         private void Update()
         {
-            DetectTarget();
+            agent.stoppingDistance = stoppingDistance;
+
+            FollowTheTarget();
         }
 
-        private void DetectTarget()
+        private void FollowTheTarget()
         {
-            float distance = Vector3.Distance(target.position, transform.position);
+            float Player_EnemyDistance = Vector3.Distance(TargetTransform.position, transform.position);
 
-            if (distance <= interactRadius)
+            if (Player_EnemyDistance <= interactRadius)
             {
-                agent.SetDestination(target.position);
+                agent.SetDestination(TargetTransform.position);
+
+                if (Player_EnemyDistance <= agent.stoppingDistance)
+                {
+                    //attack
+                    base.RotationToPlayer(TargetTransform, transform);
+                }
             }
         }
     }

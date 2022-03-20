@@ -6,30 +6,32 @@ using UnityEngine;
 namespace IsometricRoguelike.Combat
 {
     [RequireComponent(typeof(NavMeshAgent), typeof(Rigidbody))]
-    public class Friendly : Interactable, IAlive
+    public abstract class Friendly : Interactable, IAlive
     {
+        #region Props
         #region FromInterface
         public HealthSettings HealthSettings { get; set; }
+        public Transform TargetTransform { get; set; }
         #endregion
+        [Header("For NavMeshAgent")]
+        [SerializeField] protected NavMeshAgent agent;
+
         [Header("Health")]
         [SerializeField] protected HealthSettings healthSettings;
+        #endregion
 
-        public void InstantiateHealth()
+        protected override void Awake()
         {
-            HealthSettings = Instantiate<HealthSettings>(healthSettings);
+            base.Awake();
+            HealthSettings = HealthManager.InstantiateHealthSetting(healthSettings);
         }
 
         void Start()
         {
             if (HealthSettings == null)
-            {
                 Debug.LogError($"{gameObject.name} has no HealthSettings");
-            }
-        }
 
-        protected override void Interact()
-        {
-            base.Interact();
+            TargetTransform = GameObject.FindWithTag("Player").transform;
         }
     }
 }
