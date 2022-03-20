@@ -9,5 +9,11 @@ namespace IsometricRoguelike.Combat
             base.Awake();
             base.agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         }
+
+        protected override void Interact() { }
+
+        protected override void AfterInteract() { }
+
+        protected override void EndOfInteract() { }
     }
 }

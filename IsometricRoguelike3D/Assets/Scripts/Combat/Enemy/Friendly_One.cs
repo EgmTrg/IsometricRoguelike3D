@@ -7,7 +7,13 @@ namespace IsometricRoguelike.Combat
         protected override void Awake()
         {
             base.Awake();
-            base.InstantiateHealth();
+            base.agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         }
+
+        protected override void Interact()  {   }
+
+        protected override void AfterInteract() { }
+
+        protected override void EndOfInteract() { }
     }
 }
