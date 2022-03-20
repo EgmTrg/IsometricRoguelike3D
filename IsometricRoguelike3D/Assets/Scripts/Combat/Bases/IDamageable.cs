@@ -11,6 +11,7 @@ namespace IsometricRoguelike.Combat
     public interface IAlive : IDamageable
     {
         public HealthSettings HealthSettings { get; set; }
+        public Transform TargetTransform { get; set; }
     }
 
     public interface ILifeless : IDamageable
